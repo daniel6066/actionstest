@@ -14,8 +14,8 @@ jobs:
         id: shortcode
         run: |
           echo ::set-output shortref=$(git rev-parse --short HEAD)
-      - run: echo ${{ shortcode.outputs.shortref }}
-      - run: docker build . -t $GITHUB_REPOSITORY:${{ shortcode.outputs.shortref }}
+      - run: echo ${{ steps.shortcode.outputs.shortref }}
+      - run: docker build . -t $GITHUB_REPOSITORY:${{ steps.shortcode.outputs.shortref }}
       -
         name: Login to DockerHub
         uses: docker/login-action@v1 
