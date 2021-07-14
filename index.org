@@ -158,7 +158,33 @@ Create =.github/workflows/build_test_and_push.yml:=
 
 * Test it out
 
+#+begin_src bash
+  git add .
+  git commit -m "Initial import"
+  git push origin master
+#+end_src
 
+Since we have the =fail_test.sh= script being run as part of the action,
+it should build the image and then abort on the =Run Test= part of the
+run.  If you go to your repository, click on =Actions=, you should see
+the failed run.
+
+Lets create a staging branch to fix it:
+
+#+begin_src bash
+git checkout -b staging
+#+end_src
+
+Then change like =28= inside of =build_test_and_push.sh= to run
+=/app/success_test.sh= instead.  Commit, and then push to the staging
+branch:
+
+#+begin_src
+git add .
+git commit -m "Fixing the test in staging"
+git push origin staging
+
+#+end_src
 * References
 
 1. https://docs.github.com/en/actions
