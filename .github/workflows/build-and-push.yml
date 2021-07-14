@@ -14,7 +14,7 @@ jobs:
         id: tag
         run: git rev-parse --short HEAD
       - run: echo ${{ steps.tag.output }}
-      - run: docker build . -t ${{ GITHUB_REPOSITORY }}:${{ steps.tag.output }}
+      - run: docker build . -t ${{ env.GITHUB_REPOSITORY }}:${{ steps.tag.output }}
       -
         name: Login to DockerHub
         uses: docker/login-action@v1 
