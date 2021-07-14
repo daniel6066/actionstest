@@ -11,6 +11,11 @@ jobs:
     steps:
       - run: echo "🍏 This job's docker user is ${{ secrets.DOCKERHUB_USERNAME }}."
       -
+        id: tag
+        run: git rev-parse --short HEAD
+      - run: echo ${{ steps.tag.output }}
+        
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
