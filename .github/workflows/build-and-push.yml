@@ -9,6 +9,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "🍏 This job's docker user is ${{ secrets.DOCKERHUB_USERNAME }}."
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
