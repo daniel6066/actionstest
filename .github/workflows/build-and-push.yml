@@ -10,11 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      -
-        id: tag
-        run: git rev-parse --short HEAD
-      - run: echo ${{ steps.tag.output }}
-      - run: docker build . -t ${{ env.GITHUB_REPOSITORY }}:${{ steps.tag.output }}
+      - name: Find short code
+        id: shortcode
+        run: |
+          echo "shortref=$(git rev-parse --short HEAD)" >> $SHORTCODE
+      - run: echo ${{ env.shortref }}
+      - run: docker build . -t $GITHUB_REPOSITORY:${{ env.shortref }}
       -
         name: Login to DockerHub
         uses: docker/login-action@v1 
